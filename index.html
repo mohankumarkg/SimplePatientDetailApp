@@ -1,0 +1,292 @@
+<html>
+
+<head>
+    <title>Form Demo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body ng-app="myApp">
+
+    <div class="generic-container" ng-controller="AppController as ctrl">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="lead">Patient Registration Form </span></div>
+            <br>
+            <div class="formcontainer">
+                <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="firstname">First Name</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="ctrl.user.firstname" id="firstname" class="username form-control" placeholder="Enter Your First Name" required/>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.firstname.$error.required">This is a required field</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="lastname">Last Name</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="ctrl.user.lastname" id="lastname" class="lastname form-control" placeholder="Enter Your Last Name" required/>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.lastname.$error.required">This is a required field</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="age">Age</label>
+                        <div class="col-md-7">
+                            <input type="number" ng-model="ctrl.user.age" id="age" class="age form-control" placeholder="Enter Your Age" required/>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.age.$error.required">This is a required field</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="age">DOB</label>
+                        <div class="col-md-7">
+                            <input type="date" ng-model="ctrl.user.dob" id="dob" class="dob form-control" placeholder="Enter Your DOB" required/>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.dob.$error.required">This is a required field</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="gender">Gender</label>
+                        <div class="col-md-7">
+                            <select type="number" ng-model="ctrl.user.gender" id="gender" class="dob form-control" placeholder="Select Gender" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.gender.$error.required">This is a required field</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="phone">Phone</label>
+                        <div class="col-md-7">
+                            <input class="form-control" type="tel" ng-model="ctrl.user.phone" id="example-tel-input" placeholder="Enter Your Phone Number" required>
+
+
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.phone.$error.required">This is a required field</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="address">Address</label>
+                        <div class="col-md-7">
+                            <input type="text" ng-model="ctrl.user.address" id="address" class="form-control" placeholder="Enter Your Address" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="email">Email</label>
+                        <div class="col-md-7">
+                            <input type="email" ng-model="ctrl.user.email" id="email" class="email form-control" placeholder="Enter your Email" required/>
+                            <div class="has-error" ng-show="myForm.$dirty">
+                                <span ng-show="myForm.email.$error.required">This is a required field</span>
+                                <span ng-show="myForm.email.$invalid">This field is invalid </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-lable" for="exampleTextarea">Information</label>
+                        <div class="col-md-7">
+                            <textarea class="form-control" ng-model="ctrl.user.information" id="exampleTextarea" rows="3"></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div style="text-align:center;">
+                        <div class="form-actions floatRight">
+                            <input type="submit" value="{{!ctrl.user.id ? 'Submit' : 'Update'}}" class="btn btn-primary" ng-disabled="myForm.$invalid">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="lead">List of Patients </span></div>
+            <div class="tablecontainer">
+
+              <div class="input-group">
+                    <input class="form-control" ng-model="searchKeyword.firstname" placeholder="Search" type="search"/>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Information</th>
+
+                            <th width="100">
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="u in ctrl.users | filter: searchKeyword:strict ">
+                            <td><span ng-bind="u.id"></span></td>
+                            <td><span ng-bind="u.firstname"></span></td>
+                            <td><span ng-bind="u.lastname"></span></td>
+                            <td><span ng-bind="u.age"></span></td>
+                            <td><span ng-bind="u.dob"></span></td>
+                            <td><span ng-bind="u.gender"></span></td>
+                            <td><span ng-bind="u.phone"></span></td>
+
+                            <td><span ng-bind="u.address"></span></td>
+                            <td><span ng-bind="u.email"></span></td>
+                            <td><span ng-bind="u.information"></span></td>
+                            <td>
+                                <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>
+                                <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js">
+
+
+    </script>
+    <script>
+        angular.module('myApp', [])
+            .controller('AppController', ['$scope', function($scope) {
+                var self = this;
+                self.user = {
+                    id: null,
+                    firstname: '',
+                    lastname: '',
+                    age: '',
+                    dob: '',
+                    gender: '',
+                    phone: '',
+                    address: '',
+                    email: '',
+                    information: ''
+                };
+                self.id = 10;
+
+                self.users = [ // In future posts, we will get it from server using service
+                    {
+                        id: 1,
+                        firstname: 'Delfina',
+                        lastname: 'Coleman',
+                        age: '52',
+                        dob: '20/12/1990',
+                        gender: 'Jose',
+                        phone: 'Jose',
+                        address: 'NY',
+                        email: 'sam@abc.com',
+                        information: 'Sam'
+                    }, {
+                        id: 2,
+                        firstname: 'Tomy',
+                        lastname: 'Tomy',
+                        age: '20',
+                        dob: '20/12/1990',
+                        gender: 'Jose',
+                        phone: 'Jose',
+                        address: 'ALBAMA',
+                        email: 'tomy@abc.com',
+                        information: 'Sam'
+                    }, {
+                        id: 3,
+                        firstname: 'kelly',
+                        lastname: 'kelly',
+                        age: '30',
+                        dob: '20/12/1990',
+                        gender: 'Jose',
+                        phone: 'Jose',
+                        address: 'NEBRASKA',
+                        email: 'kelly@abc.com',
+                        information: 'Sam'
+                    },
+
+                ];
+
+                self.submit = function() {
+                    if (self.user.id === null) {
+                        self.user.id = self.id++;
+                        console.log('Saving New User', self.user);
+                        self.users.push(self.user); //Or send to server, we will do it in when handling services
+                    } else {
+                        for (var i = 0; i < self.users.length; i++) {
+                            if (self.users[i].id === self.user.id) {
+                                self.users[i] = self.user;
+                                break;
+                            }
+                        }
+                        console.log('User updated with id ', self.user.id);
+                    }
+                   
+                };
+
+                self.edit = function(id) {
+                    console.log('id to be edited', id);
+                    for (var i = 0; i < self.users.length; i++) {
+                        if (self.users[i].id === id) {
+                            self.user = angular.copy(self.users[i]);
+                            break;
+                        }
+                    }
+                }
+
+                self.remove = function(id) {
+                    console.log('id to be deleted', id);
+                    for (var i = 0; i < self.users.length; i++) {
+                        if (self.users[i].id === id) {
+                            self.users.splice(i, 1);
+                            if (self.user.id === id) { //It is shown in form, reset it.
+                                self.reset();
+                            }
+                            break;
+                        }
+                    }
+                }
+
+
+                
+
+            }]);
+
+    </script>
+</body>
+
+</html>
